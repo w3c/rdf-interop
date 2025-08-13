@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>RDF 1.2 Interoperability</title>
   <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+  <script src="./common/local-biblio.js" class="remove"></script>
+  <script src="./common/fixup.js" class="remove"></script>
   <script class='remove'>
     // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
     var respecConfig = {
@@ -11,10 +13,11 @@
       group: "wg/rdf-star",
       github: "https://github.com/w3c/rdf-interop/",
       edDraftURI: "https://w3c.github.io/rdf-interop/spec/",
-      shortName: "rdf-12-interop",
+      shortName: "rdf12-interop",
       editors: [{
         name: "Pierre-Antoine Champin"
       }],
+      localBiblio: localBibliography,
     };
   </script>
 </head>
@@ -26,6 +29,7 @@
   </p>
 </section>
 <section id="sotd">
+  <section id="related" data-include="./common/related.html"></section>
 </section>
 
 <section id="introduction">
@@ -33,6 +37,9 @@
   <p class=issue>
     TODO write a nice intro
   </p>
+</section>
+
+<section id="conformance">
 </section>
 
 <section id="notation">
@@ -300,6 +307,15 @@
 
   </section>
 
+</section>
+<section id="section-Acknowledgments" class="appendix">
+  <h2>Acknowledgments</h2>
+
+  <p>In addition to the editors, the following people have contributed to this specification:
+    <span id="gh-contributors"></span>
+  </p>
+
+  <p data-include="common/participants.html"></p>
 </section>
 
 </body>
