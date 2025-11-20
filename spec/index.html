@@ -39,9 +39,6 @@
   </p>
 </section>
 
-<section id="conformance">
-</section>
-
 <section id="notation">
   <h2>Notation and Terminology</h2>
 
@@ -113,7 +110,7 @@
 
     <p>Note that this transformation is <em>information preserving</em> only when the input graph either has no [=triple term=] [=appearing=] in it,
       or contains no [=asserted triple=] (<var>b</var>, `rdf:type`, `rdf:TripleTerm`) where <var>b</var> is a [=blank node=].
-      Implementations encountering this situation MUST report an error.
+      Implementations encountering this situation ought to report an error.
       This limitation is discussed in Section <a href="#section-basicenc-caveat"></a>.
     </p>
 
@@ -174,12 +171,12 @@
       with the [=triple term=] (<var>s</var>, <var>p</var>, <var>o</var>).
     </p>
 
-    <p>An implementation MUST report an error if, for a given <var>b</var>,
+    <p>An implementation ought to report an error if, for a given <var>b</var>,
       it can not unambiguously determine <var>s</var>, <var>p</var>, or <var>o</var>
       (i.e., if one of the properties of <var>b</var>
       — `rdf:ttSubject`, `rdf:ttPredicate`, or `rdf:ttObject` —
       is missing or duplicated).
-      An implementation MUST also report an error if the input graph contains
+      An implementation also ought to report an error if the input graph contains
       at the same time a [=triple term=] and an [=asserted triple=]
       (<var>b</var>, `rdf:type`, `rdf:TripleTerm`)
       where <var>b</var> is the same [=blank node=].
