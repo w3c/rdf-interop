@@ -23,4 +23,4 @@ jobs:
           # W3C_WG_DECISION_URL: https://www.w3.org/2022/11/09-rch-minutes#r03
           W3C_BUILD_OVERRIDE: |
             specStatus: DNOTE
-            shortName: rdf12-concepts
+            shortName: rdf12-interop
