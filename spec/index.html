@@ -35,8 +35,19 @@
 
 <section id="introduction">
   <h2>Introduction</h2>
-  <p class=issue>
-    TODO write a nice intro
+  <p>
+    RDF 1.2 [[RDF12-CONCEPTS]] defines two classes of conformance, namely RDF 1.2 Full and RDF 1.2 Basic,
+    which can also be understood as two variants of the RDF 1.2 syntax.
+    More specifically, RDF 1.2 Basic is the subset of of RDF 1.2 where no [=triple term=] is used.
+    This raises a challenge when Basic and Full implementations need to interoperate.
+  </p>
+
+  <p>
+    This specification aims to provide guidance to solve these interoperability challenges.
+    Note that the methods and tools provided here are not normative,
+    as they are not meant to be the only and authoritative way to achieve interoperability across heterogeneous implementations.
+    As pointed out in <a data-cite="RDF12-CONCEPTS#conformance">Section 2 of RDF 1.2 Concepts</a>,
+    different strategies are acceptable, depending on the context.
   </p>
 </section>
 
@@ -59,13 +70,11 @@
     <dfn data-cite="RDF12-CONCEPTS#dfn-reifier">reifier</dfn>,
     <dfn data-cite="RDF12-CONCEPTS#dfn-subject">subject</dfn>,
     <dfn data-cite="RDF12-CONCEPTS#dfn-triple">triple</dfn>,
-    <dfn data-cite="RDF12-CONCEPTS#dfn-triple term">triple term</dfn>.
+    <dfn data-cite="RDF12-CONCEPTS#dfn-triple-term">triple term</dfn>.
 </section>
 
 <section id="section-basic-full-interop">
   <h2>Interoperability between RDF [=Basic=] and RDF [=Full=]</h2>
-
-  <p class=issue>Should we make this section normative?</p>
 
   <p>This section provides transformations between [=Full=] [=RDF graphs=] (respectively, [=RDF datasets=]) and [=Basic=] [=RDF graphs=] (respectively, [=RDF datasets=]),
   to provide some level of interoperability between the different classes of <a data-cite="RDF12-CONCEPTS#conformance">Conformance</a>.
