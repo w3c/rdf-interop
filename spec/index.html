@@ -35,9 +35,77 @@
 
 <section id="introduction">
   <h2>Introduction</h2>
-  <p class=issue>
-    TODO write a nice intro
+
+  <p>
+    RDF 1.2 refines and extends the RDF data model that was introduced in RDF 1.1, most notably
+    by adding <a data-cite="RDF12-CONCEPTS#section-triple-terms">triple terms</a> for
+    representing statements about statements directly in RDF graphs [[RDF12-CONCEPTS]].
+    As a consequence, the RDF 1.2 family of specifications distinguishes between
+    RDF [=Basic=] and RDF [=Full=] conformance classes, reflecting differences in the
+    features that implementations support, and in the kinds of graphs and datasets
+    they are able to consume and produce.
   </p>
+
+  <p>
+    Importantly, the RDF ecosystem already includes a large body of deployed data,
+    tools, and vocabularies based on RDF 1.1 and its earlier specifications. Some
+    systems will be updated to support RDF 1.2 [=Full=] features such as triple terms,
+    while others will remain limited to RDF [=Basic=] (for example, because they only
+    implement a subset of the abstract data model, or because they are constrained by
+    existing APIs, storage backends, or query languages). Data may also be constrained
+    by profiles that restrict which RDF features are allowed in a given context.
+    Ensuring that these heterogeneous components can interoperate in a predictable way
+    is essential for the continued growth of the RDF ecosystem.
+  </p>
+
+  <p>
+    Therefore, one goal of this specification is to provide guidance and good practices
+    by which to achieve interoperability across different versions and profiles of RDF.
+    It focuses on describing how RDF [=Full=] graphs and datasets that make use of
+    triple terms can be transformed into RDF [=Basic=] graphs and datasets, and how the
+    original [=Full=] data can be reconstructed when appropriate. These transformations
+    allow data producers to publish RDF that is consumable by RDF [=Basic=] tools,
+    while preserving enough information for RDF [=Full=] tools to produce the RDF [=Full=]
+    structure when needed.
+  </p>
+
+  <p>
+    In particular, this document:
+  </p>
+
+  <ul>
+    <li>
+      defines <em>basic encoding</em>, a transformation from RDF [=Full=] graphs and
+      datasets to RDF [=Basic=] graphs and datasets that replaces [=triple terms=]
+      with [=blank nodes=] and associated structural triples;
+    </li>
+    <li>
+      defines the corresponding <em>basic decoding</em> transformation that produces
+      triple terms from graphs and datasets that were previously [=basic encoded=];
+    </li>
+    <li>
+      discusses limitations and caveats of these transformations, particularly with
+      respect to graphs that already use the vocabulary reserved for basic encoding,
+      or that have been constructed by merging encoded and non-encoded data;
+    </li>
+    <li>
+      provides implementers and profile authors with guidance on how to use these
+      transformations to improve interoperability between RDF [=Basic=] and
+      RDF [=Full=] systems, and between RDF 1.1 and RDF 1.2 deployments.
+    </li>
+  </ul>
+
+  <p>
+    The transformations defined here are designed to be information-preserving,
+    idempotent, and (subject to the limitations described in this document)
+    applicable to any RDF [=Full=] graph or dataset. They do <em>not</em> aim to
+    preserve the precise entailment relationships described in [[RDF12-SEMANTICS]]:
+    the encoded graphs are not, in general, semantically [=equivalent=] to the
+    originals under all entailment regimes. Instead, the focus is on faithful
+    round-tripping of data structures so that information is not lost when moving
+    between implementations that support different features.
+  </p>
+
 </section>
 
 <section id="notation">
