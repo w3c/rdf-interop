@@ -111,9 +111,9 @@
     </p>
     <ul>
       <li>(<var>b</var>, `rdf:type`, `rdf:PropositionForm`)
-      <li>(<var>b</var>, `rdf:PropositionFormSubject`, <var>s</var>)
-      <li>(<var>b</var>, `rdf:PropositionFormPredicate`, <var>p</var>)
-      <li>(<var>b</var>, `rdf:PropositionFormObject`, <var>o</var>)
+      <li>(<var>b</var>, `rdf:propositionFormSubject`, <var>s</var>)
+      <li>(<var>b</var>, `rdf:propositionFormPredicate`, <var>p</var>)
+      <li>(<var>b</var>, `rdf:propositionFormObject`, <var>o</var>)
     </ul>
 
     <p>Note that this transformation is <em>information preserving</em> only when the input graph either has no [=triple term=] [=appearing=] in it,
@@ -171,9 +171,9 @@
       that has a [=blank node=] <var>b</var> as its subject,
       along with the three associated [=asserted triples=]
       that have the same [=blank node=] <var>b</var> as their subjects, i.e.,
-      (<var>b</var>, `rdf:PropositionFormSubject`, <var>s</var>),
-      (<var>b</var>, `rdf:PropositionFormPredicate`, <var>p</var>),
-      and (<var>b</var>, `rdf:PropositionFormObject`, <var>o</var>);
+      (<var>b</var>, `rdf:propositionFormSubject`, <var>s</var>),
+      (<var>b</var>, `rdf:propositionFormPredicate`, <var>p</var>),
+      and (<var>b</var>, `rdf:propositionFormObject`, <var>o</var>);
       removing these four [=triples=] from the graph;
       and replacing all remaining occurrences of <var>b</var> [=appearing=] in the graph
       with the [=triple term=] (<var>s</var>, <var>p</var>, <var>o</var>).
@@ -182,7 +182,7 @@
     <p>An implementation ought to report an error if, for a given <var>b</var>,
       it can not unambiguously determine <var>s</var>, <var>p</var>, or <var>o</var>
       (i.e., if one of the properties of <var>b</var>
-      — `rdf:PropositionFormSubject`, `rdf:PropositionFormPredicate`, or `rdf:PropositionFormObject` —
+      — `rdf:propositionFormSubject`, `rdf:propositionFormPredicate`, or `rdf:propositionFormObject` —
       is missing or duplicated).
       An implementation also ought to report an error if the input graph contains
       at the same time a [=triple term=] and an [=asserted triple=]
@@ -218,7 +218,7 @@
 
     <p class=note>
       This is one reason why this transformation introduces new vocabulary terms
-      (`rdf:PropositionForm`, `rdf:PropositionFormSubject`, `rdf:PropositionFormPredicate`, `rdf::ttObject`),
+      (`rdf:PropositionForm`, `rdf:propositionFormSubject`, `rdf:propositionFormPredicate`, `rdf::ttObject`),
       rather than repurposing the existing <a data-cite="RDF12-SCHEMA#ch_reificationvocab">reification vocabulary</a>
       (`rdf:Statement`, `rdf:subject`, `rdf:predicate`, `rdf:object`).
       Unlike `rdf:PropositionForm`, `rdf:Statement` is known to be found in
@@ -297,7 +297,7 @@
           </ol></li>
           <li id="qtt-fresh-bnode">Let <var>b</var> be a fresh blank node.</li>
           <li>Add the association (<var>t</var>, <var>b</var>) to <var>Mₒ</var>.</li>
-          <li>Add the triples (<var>b</var>, `rdf:type`, `rdf:PropositionForm`), (<var>b</var>, `rdf:PropositionFormSubject`, <var>s</var>), (<var>b</var>, `rdf:PropositionFormPredicate`, <var>p</var>), and (<var>b</var>, `rdf:PropositionFormObject`, <var>o</var>) in <var>G</var>.</li>
+          <li>Add the triples (<var>b</var>, `rdf:type`, `rdf:PropositionForm`), (<var>b</var>, `rdf:propositionFormSubject`, <var>s</var>), (<var>b</var>, `rdf:propositionFormPredicate`, <var>p</var>), and (<var>b</var>, `rdf:propositionFormObject`, <var>o</var>) in <var>G</var>.</li>
         </ol></li>
         <li>Return <var>b</var>, <var>Mₒ</var> and <var>G</var>.</li>
       </ol>
