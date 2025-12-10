@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 35.6.0">
+<meta name="generator" content="ReSpec 35.6.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -252,21 +252,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "sparql12-concepts"
     }
   },
-  "publishDate": "2025-11-27",
-  "publishISODate": "2025-11-27T00:00:00.000Z",
-  "generatedSubtitle": "W3C Group Draft Note 27 November 2025"
+  "publishDate": "2025-12-18",
+  "publishISODate": "2025-12-18T00:00:00.000Z",
+  "generatedSubtitle": "W3C Group Note Draft 18 December 2025"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-DNOTE"></head>
 <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">RDF 1.2 Interoperability</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#DNOTE">W3C Group Draft Note</a> <time class="dt-published" datetime="2025-11-27">27 November 2025</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#DNOTE">W3C Group Note Draft</a> <time class="dt-published" datetime="2025-12-18">18 December 2025</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2025/DNOTE-rdf12-interop-20251127/">https://www.w3.org/TR/2025/DNOTE-rdf12-interop-20251127/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2025/DNOTE-rdf12-interop-20251218/">https://www.w3.org/TR/2025/DNOTE-rdf12-interop-20251218/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/rdf12-interop/">https://www.w3.org/TR/rdf12-interop/</a>
@@ -325,9 +325,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> standards and drafts index</a>.</em></p>
   <p>
     This document was published by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF &amp; SPARQL Working Group</a> as
-    a Group Draft Note using the
+    a Group Note Draft using the
         <a href="https://www.w3.org/policies/process/20250818/#recs-and-notes">Note track</a>. 
-  </p><p>Group Draft Notes are not endorsed by
+  </p><p>Group Note Drafts are not endorsed by
         <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. </p><p>
     This is a draft document and may be updated, replaced, or obsoleted by other
     documents at any time. It is inappropriate to cite this document as other
@@ -386,9 +386,20 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
 <section id="introduction"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a></div>
   
-  <div class="issue" id="issue-container-number-1"><div role="heading" class="issue-title marker" id="h-issue" aria-level="3"><span>Issue 1</span></div><p class="">
-    TODO write a nice intro
-  </p></div>
+  <p>
+    RDF 1.2 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Data Model">RDF12-CONCEPTS</a></cite>] defines two classes of conformance, namely <i>RDF 1.2 Full</i> and <i>RDF 1.2 Basic</i>,
+    which can also be understood as two variants of the RDF 1.2 syntax.
+    More specifically, RDF 1.2 Basic is the subset of RDF 1.2 where no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> is used.
+    This raises a challenge when Basic and Full implementations need to interoperate.
+  </p>
+
+  <p>
+    This specification aims to provide guidance to solve these interoperability challenges.
+    Note that the methods and tools provided here are not normative,
+    as they are not meant to be the only and authoritative way to achieve interoperability across heterogeneous implementations.
+    As pointed out in the <a href="https://www.w3.org/TR/rdf12-concepts/#conformance">Conformance section of RDF 1.2 Concepts</a>,
+    different strategies are acceptable, depending on the context.
+  </p>
 </section>
 
 <section id="notation"><div class="header-wrapper"><h2 id="x2-notation-and-terminology"><bdi class="secno">2. </bdi>Notation and Terminology</h2><a class="self-link" href="#notation" aria-label="Permalink for Section 2."></a></div>
@@ -410,20 +421,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <dfn data-plurals="reifiers" id="dfn-reifier" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://www.w3.org/TR/rdf12-concepts/#dfn-reifier">reifier</a></dfn>,
     <dfn id="dfn-subject" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://www.w3.org/TR/rdf12-concepts/#dfn-subject">subject</a></dfn>,
     <dfn data-plurals="triples" id="dfn-triple" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple">triple</a></dfn>,
-    <dfn data-plurals="triple terms" id="dfn-triple-term" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a></dfn>.
+    <dfn data-plurals="triple terms" id="dfn-triple-term" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a></dfn>.
 </p></section>
 
 <section id="section-basic-full-interop"><div class="header-wrapper"><h2 id="x3-interoperability-between-rdf-basic-and-rdf-full"><bdi class="secno">3. </bdi>Interoperability between RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> and RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a></h2><a class="self-link" href="#section-basic-full-interop" aria-label="Permalink for Section 3."></a></div>
   
 
-  <div class="issue" id="issue-container-number-2"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="3"><span>Issue 2</span></div><p class="">Should we make this section normative?</p></div>
-
   <p>This section provides transformations between <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graphs</a> (respectively, <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset">RDF datasets</a>) and <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graphs</a> (respectively, <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset">RDF datasets</a>),
   to provide some level of interoperability between the different classes of <a href="https://www.w3.org/TR/rdf12-concepts/#conformance">Conformance</a>.
 
-  </p><div class="issue" id="issue-container-number-3"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="3"><span>Issue 3</span></div><p class="">Should we go even further and aim to provide interoperability between <em>RDF 1.1</em> and RDF 1.2 <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a>?</p></div>
+  </p><div class="issue" id="issue-container-number-1"><div role="heading" class="issue-title marker" id="h-issue" aria-level="3"><span>Issue 1</span></div><p class="">Should we go even further and aim to provide interoperability between <em>RDF 1.1</em> and RDF 1.2 <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a>?</p></div>
 
-  <div class="issue" id="issue-container-number-4"><div role="heading" class="issue-title marker" id="h-issue-2" aria-level="3"><span>Issue 4</span></div><p class="">AT RISK: The Working Group may decide to replace the terms <code>rdf:TripleTerm</code>, <code>rdf:ttSubject</code>, <code>rdf:ttPredicate</code>, and <code>rdf:ttObject</code> used in this section with other terms, possibly in a different namespace.</p></div>
+  <div class="issue" id="issue-container-number-2"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="3"><span>Issue 2</span></div><p class="">AT RISK: The Working Group may decide to replace the terms <code>rdf:TripleTerm</code>, <code>rdf:ttSubject</code>, <code>rdf:ttPredicate</code>, and <code>rdf:ttObject</code> used in this section with other terms, possibly in a different namespace.</p></div>
 
   <p>These transformation are designed to be:</p>
 
@@ -436,7 +445,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </dd>
     <dt>Idempotent</dt>
     <dd>Applying a transformation several times to a graph (respectively, dataset) should have the same effect as applying it once.
-      Moreover, <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-1">basic encoding</a> a graph (respectively, dataset) that is already complying with RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> (i.e., containing no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a>) must result in the same graph (respectively, dataset).
+      Moreover, <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-1">basic encoding</a> a graph (respectively, dataset) that is already complying with RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> (i.e., containing no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a>) must result in the same graph (respectively, dataset).
     </dd>
     <dt>Universal</dt>
     <dd>It should be possible to transform any <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> graph (respectively, dataset) to a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> graph (respectively, dataset) using this method.
@@ -449,7 +458,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
     <p>
       Encoding an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> to ensure that it is consumable by an RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> implementation is called <dfn data-lt="basic encode|basic encoded|basic encoding" id="dfn-basic-encode" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">basic encoding</dfn> it.
-      <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-2">Basic encoding</a> consists of repeating the following steps until no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appears</a> in the graph, and the graph is therefore compliant with RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a>: picking a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> <var>tt</var> that <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appears</a> in the graph; minting a fresh <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> <var>b</var>
+      <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-2">Basic encoding</a> consists of repeating the following steps until no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appears</a> in the graph, and the graph is therefore compliant with RDF <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a>: picking a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> <var>tt</var> that <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appears</a> in the graph; minting a fresh <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> <var>b</var>
       (i.e., a blank node not yet in use in the graph); replacing all occurrences of <var>tt</var> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appearing</a> in the graph with <var>b</var>;
       and then adding the following <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple">triples</a> to the graph (where <var>s</var>, <var>p</var>, and <var>o</var> are respectively the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-subject">subject</a>, <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-predicate">predicate</a> and <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-object">object</a> of <var>tt</var>):
     </p>
@@ -460,17 +469,17 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       </li><li>(<var>b</var>, <code>rdf:ttObject</code>, <var>o</var>)
     </li></ul>
 
-    <p>Note that this transformation is <em>information preserving</em> only when the input graph either has no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appearing</a> in it,
+    <p>Note that this transformation is <em>information preserving</em> only when the input graph either has no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appearing</a> in it,
       or contains no <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-asserted-triple">asserted triple</a> (<var>b</var>, <code>rdf:type</code>, <code>rdf:TripleTerm</code>) where <var>b</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a>.
       Implementations encountering this situation ought to report an error.
       This limitation is discussed in Section&nbsp;<a href="#section-basicenc-caveat" class="sec-ref"><bdi class="secno">3.3 </bdi>Limitations</a>.
     </p>
 
-    <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><p class="">The blank nodes generated to replace <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a> should not be confused with the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-reifier">reifiers</a> that are typically associated with these <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a>.</p></div>
+    <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><p class="">The blank nodes generated to replace <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a> should not be confused with the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-reifier">reifiers</a> that are typically associated with these <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a>.</p></div>
 
     <p>
       <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-3">Basic encoding</a> an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset">RDF dataset</a> consists of <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-4">basic encoding</a> its <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-default-graph">default graph</a> and each of its <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-named-graph">named graph</a>.
-      In this case, the fresh <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> assigned to each <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> must not be used in any graph of the dataset.
+      In this case, the fresh <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> assigned to each <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> must not be used in any graph of the dataset.
     </p>
 
     <p>
@@ -533,7 +542,7 @@ _:gen1 a rdf:TripleTerm ;
       and (<var>b</var>, <code>rdf:ttObject</code>, <var>o</var>);
       removing these four <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple">triples</a> from the graph;
       and replacing all remaining occurrences of <var>b</var> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-appear">appearing</a> in the graph
-      with the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> (<var>s</var>, <var>p</var>, <var>o</var>).
+      with the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> (<var>s</var>, <var>p</var>, <var>o</var>).
     </p>
 
     <p>An implementation ought to report an error if, for a given <var>b</var>,
@@ -542,7 +551,7 @@ _:gen1 a rdf:TripleTerm ;
       — <code>rdf:ttSubject</code>, <code>rdf:ttPredicate</code>, or <code>rdf:ttObject</code> —
       is missing or duplicated).
       An implementation also ought to report an error if the input graph contains
-      at the same time a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> and an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-asserted-triple">asserted triple</a>
+      at the same time a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> and an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-asserted-triple">asserted triple</a>
       (<var>b</var>, <code>rdf:type</code>, <code>rdf:TripleTerm</code>)
       where <var>b</var> is the same <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a>.
       Note that none of these situations can occur if the input graph was produced by the <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-6">basic encoding</a> transformation.
@@ -552,7 +561,7 @@ _:gen1 a rdf:TripleTerm ;
     </p>
 
     <p>Note that this transformation has no effect on any <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> or <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset">RDF dataset</a> that does not use the <code>rdf:TripleTerm</code> type,
-      including <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> graphs or datasets containing <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a>.
+      including <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> graphs or datasets containing <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a>.
       This makes this transformation <em>idempotent</em> as intended.
     </p>
   </section>
@@ -560,7 +569,7 @@ _:gen1 a rdf:TripleTerm ;
   <section id="section-basicenc-caveat"><div class="header-wrapper"><h3 id="x3-3-limitations"><bdi class="secno">3.3 </bdi>Limitations</h3><a class="self-link" href="#section-basicenc-caveat" aria-label="Permalink for Section 3.3"></a></div>
     
 
-    <p>The two transformations above explicitly do not support graphs or datasets containing at the same time a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> and an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-asserted-triple">asserted triple</a>
+    <p>The two transformations above explicitly do not support graphs or datasets containing at the same time a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> and an <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-asserted-triple">asserted triple</a>
       (<var>b</var>, <code>rdf:type</code>, <code>rdf:TripleTerm</code>)
       where <var>b</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a>.
       This means that the <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-8">basic encoding</a> transformation is not <em>strictly</em> universal.
@@ -584,7 +593,7 @@ _:gen1 a rdf:TripleTerm ;
     </p></div>
 
     <p>Another consequence of this restriction is that implementers will need to be aware and careful when merging graphs in an application that <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-11">basic encoded</a> graphs or datasets.
-      The concern is that merging a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> containing at least one <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a>
+      The concern is that merging a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> containing at least one <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a>
       with a <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-12">basic encoded</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> (which might contain <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> instances of <code>rdf:TripleTerm</code>)
       could result in a "hybrid" graph that cannot be transformed to a consistent <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-full">Full</a> nor <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a>.
       Therefore, such applications should <a data-link-type="dfn|abstract-op" href="#dfn-basic-encode" class="internalDFN" id="ref-for-dfn-basic-encode-13">basic encode</a> every graph prior to merging them.
@@ -606,14 +615,14 @@ _:gen1 a rdf:TripleTerm ;
 
       <ol>
         <li>Let <var>Gₒ</var> be an empty <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a>.</li>
-        <li>Let <var>M</var> be an empty map from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>.</li>
+        <li>Let <var>M</var> be an empty map from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>.</li>
         <li>Let <var>inputKind</var> be <code>null</code>.</li>
         <li>For each <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple">triple</a> (<var>s</var>, <var>p</var>, <var>o</var>) in <var>Gᵢ</var>:<ol>
           <li>If <var>s</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a>, <var>p</var> is <code>rdf:type</code> and <var>o</var> is <code>rdf:TripleTerm</code>, then:<ol>
             <li id="basicenc-error1">If <var>inputKind</var> is <code>"full"</code> then exit with an error.</li>
             <li>Otherwise, set <var>inputKind</var> to <code>"basic"</code>.</li>
           </ol></li>
-          <li>If <var>o</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a>, then:<ol>
+          <li>If <var>o</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a>, then:<ol>
             <li id="basicenc-error2">If <var>inputKind</var> is <code>"basic"</code> then exit with an error.</li>
             <li>Otherwise, set <var>inputKind</var> to <code>"full"</code>.</li>
             <li>Let <var>b</var>, <var>M'</var> and <var>G'</var> be the result of invoking <a href="#section-ctt-algo"><code>basic-encode-triple-term</code></a> passing <var>o</var> as <var>t</var> and <var>M</var> as <var>Mi</var>.</li>
@@ -630,13 +639,13 @@ _:gen1 a rdf:TripleTerm ;
     <section id="section-ctt-algo" class="algorithm"><div class="header-wrapper"><h4 id="x3-4-2-the-basic-encode-triple-term-algorithm"><bdi class="secno">3.4.2 </bdi>The <code>basic-encode-triple-term</code> algorithm</h4><a class="self-link" href="#section-ctt-algo" aria-label="Permalink for Section 3.4.2"></a></div>
       
 
-      <p>This algorithm is responsible for incrementally populating the mapping <var>M</var> and the graph <var>G</var> used internally by the <a href="#section-basicenc-algo"><code>basic-encode</code></a> algorithm. It receives a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> as input and processes it recursively (in case its object is itself a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a>). It returns, among other things, the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> minted to replace the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> in the transformed <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a>.</p>
+      <p>This algorithm is responsible for incrementally populating the mapping <var>M</var> and the graph <var>G</var> used internally by the <a href="#section-basicenc-algo"><code>basic-encode</code></a> algorithm. It receives a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> as input and processes it recursively (in case its object is itself a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a>). It returns, among other things, the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> minted to replace the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> in the transformed <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a>.</p>
 
       <p>This algorithm expects two input variables:
-        a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a> <var>t</var>,
-        and a map <var>Mᵢ</var> from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>.
+        a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a> <var>t</var>,
+        and a map <var>Mᵢ</var> from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>.
         It returns a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> <var>b</var>,
-        a map <var>Mₒ</var> from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>,
+        a map <var>Mₒ</var> from <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple terms</a> to <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank nodes</a>,
         and a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic">Basic</a> <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graph</a> <var>G</var>.
       </p>
 
@@ -646,7 +655,7 @@ _:gen1 a rdf:TripleTerm ;
         <li>Let <var>b</var> be the <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node">blank node</a> associated with <var>t</var> in <var>Mᵢ</var>, if any.
         </li><li>Otherwise:<ol>
           <li>Let <var>s</var>, <var>p</var> and <var>o</var> be the subject, predicate and object of <var>t</var>, respectively.</li>
-          <li>If <var>o</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple%20term">triple term</a>, then:<ol>
+          <li>If <var>o</var> is a <a data-link-type="dfn|abstract-op" href="https://www.w3.org/TR/rdf12-concepts/#dfn-triple-term">triple term</a>, then:<ol>
             <li>Let <var>b'</var>, <var>M'</var> and <var>G'</var> be the result of invoking <a href="#section-ctt-algo"><code>basic-encode-triple-term</code></a> passing <var>o</var> as <var>t</var> and <var>Mᵢ</var>.</li>
             <li>Set <var>o</var> to <var>b'</var>.
             </li><li>Merge <var>M'</var> into <var>Mₒ</var>.
@@ -664,7 +673,7 @@ _:gen1 a rdf:TripleTerm ;
     <section id="section-basicdec-algo" class="algorithm"><div class="header-wrapper"><h4 id="x3-4-3-the-basic-decode-algorithm"><bdi class="secno">3.4.3 </bdi>The <code>basic-decode</code> algorithm</h4><a class="self-link" href="#section-basicdec-algo" aria-label="Permalink for Section 3.4.3"></a></div>
       
 
-      <div class="issue" id="issue-container-number-5"><div role="heading" class="issue-title marker" id="h-issue-3" aria-level="5"><span>Issue 5</span></div><p class="">Write this algorithm</p></div>
+      <div class="issue" id="issue-container-number-3"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="5"><span>Issue 3</span></div><p class="">Write this algorithm</p></div>
     </section>
 
   </section>
@@ -736,7 +745,7 @@ _:gen1 a rdf:TripleTerm ;
 <section id="references" class="appendix"><div class="header-wrapper"><h2 id="b-references"><bdi class="secno">B. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix B."></a></div><section id="informative-references"><div class="header-wrapper"><h3 id="b-1-informative-references"><bdi class="secno">B.1 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix B.1"></a></div>
     
     <dl class="bibliography"><dt id="bib-rdf12-concepts">[RDF12-CONCEPTS]</dt><dd>
-      <a href="https://www.w3.org/TR/rdf12-concepts/"><cite>RDF 1.2 Concepts and Abstract Data Model</cite></a>. Gregg Kellogg; Olaf Hartig; Pierre-Antoine Champin; Andy Seaborne.  W3C. 18 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-concepts/">https://www.w3.org/TR/rdf12-concepts/</a>
+      <a href="https://www.w3.org/TR/rdf12-concepts/"><cite>RDF 1.2 Concepts and Abstract Data Model</cite></a>. Gregg Kellogg; Olaf Hartig; Pierre-Antoine Champin; Andy Seaborne.  W3C. 20 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-concepts/">https://www.w3.org/TR/rdf12-concepts/</a>
     </dd><dt id="bib-rdf12-n-quads">[RDF12-N-QUADS]</dt><dd>
       <a href="https://www.w3.org/TR/rdf12-n-quads/"><cite>RDF 1.2 N-Quads</cite></a>. Gregg Kellogg; Dominik Tomaszuk.  W3C. 7 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-n-quads/">https://www.w3.org/TR/rdf12-n-quads/</a>
     </dd><dt id="bib-rdf12-n-triples">[RDF12-N-TRIPLES]</dt><dd>
@@ -746,7 +755,7 @@ _:gen1 a rdf:TripleTerm ;
     </dd><dt id="bib-rdf12-primer">[RDF12-PRIMER]</dt><dd>
       <a href="https://www.w3.org/TR/rdf12-primer/"><cite>RDF 1.2 Primer</cite></a>. Niklas Lindström; Pierre-Antoine Champin.  W3C. 3 April 2025. DNOTE. URL: <a href="https://www.w3.org/TR/rdf12-primer/">https://www.w3.org/TR/rdf12-primer/</a>
     </dd><dt id="bib-rdf12-schema">[RDF12-SCHEMA]</dt><dd>
-      <a href="https://www.w3.org/TR/rdf12-schema/"><cite>RDF 1.2 Schema</cite></a>. Dominik Tomaszuk; Timothée Haudebourg.  W3C. 3 October 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-schema/">https://www.w3.org/TR/rdf12-schema/</a>
+      <a href="https://www.w3.org/TR/rdf12-schema/"><cite>RDF 1.2 Schema</cite></a>. Dominik Tomaszuk.  W3C. 22 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-schema/">https://www.w3.org/TR/rdf12-schema/</a>
     </dd><dt id="bib-rdf12-semantics">[RDF12-SEMANTICS]</dt><dd>
       <a href="https://www.w3.org/TR/rdf12-semantics/"><cite>RDF 1.2 Semantics</cite></a>. Peter Patel-Schneider; Dörthe Arndt; Enrico Franconi.  W3C. 11 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/rdf12-semantics/">https://www.w3.org/TR/rdf12-semantics/</a>
     </dd><dt id="bib-rdf12-trig">[RDF12-TRIG]</dt><dd>
@@ -768,7 +777,7 @@ _:gen1 a rdf:TripleTerm ;
     </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
       <a href="https://www.w3.org/TR/sparql12-protocol/"><cite>SPARQL 1.2 Protocol</cite></a>. Andy Seaborne; Ruben Taelman; Gregory Williams; Thomas Pellissier Tanon.  W3C. 14 August 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/sparql12-protocol/">https://www.w3.org/TR/sparql12-protocol/</a>
     </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
-      <a href="https://www.w3.org/TR/sparql12-query/"><cite>SPARQL 1.2 Query Language</cite></a>. Olaf Hartig; Andy Seaborne; Ruben Taelman; Gregory Williams; Thomas Pellissier Tanon.  W3C. 15 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
+      <a href="https://www.w3.org/TR/sparql12-query/"><cite>SPARQL 1.2 Query Language</cite></a>. Olaf Hartig; Andy Seaborne; Ruben Taelman; Gregory Williams; Thomas Pellissier Tanon.  W3C. 22 November 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
     </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
       <a href="https://www.w3.org/TR/sparql12-results-csv-tsv/"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Ruben Taelman; Gregory Williams; Thomas Pellissier Tanon.  W3C. 14 August 2025. W3C Working Draft. URL: <a href="https://www.w3.org/TR/sparql12-results-csv-tsv/">https://www.w3.org/TR/sparql12-results-csv-tsv/</a>
     </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
