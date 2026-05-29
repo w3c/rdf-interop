@@ -1,3 +1,5 @@
+VERSION "1.2-basic"
+
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX ex: <http://example.org/>
 
